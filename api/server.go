@@ -70,6 +70,9 @@ func (server *Server) InitializeServer() {
 		ReadTimeout:  20 * time.Minute,
 		WriteTimeout: 20 * time.Minute,
 	}
+	server.Route.GET("", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Final Project Training MNC x Hacktiv8 OK")
+	})
 	server.Route.GET("/swagger/*", echoSwagger.WrapHandler)
 	server.Route.Logger.Fatal(server.Route.StartServer(serverConfiguration))
 }
