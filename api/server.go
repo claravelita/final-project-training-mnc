@@ -14,7 +14,7 @@ import (
 	"github.com/claravelita/final-project-training-mnc/repository"
 	commentUsecase "github.com/claravelita/final-project-training-mnc/usecase/comment"
 	photoUsecase "github.com/claravelita/final-project-training-mnc/usecase/photo"
-	socialMediaUsecase "github.com/claravelita/final-project-training-mnc/usecase/socialmedia"
+	socialMediaUsecase "github.com/claravelita/final-project-training-mnc/usecase/socialMedia"
 	userUsecase "github.com/claravelita/final-project-training-mnc/usecase/user"
 
 	"github.com/labstack/echo/v4"
