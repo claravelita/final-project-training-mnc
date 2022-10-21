@@ -1,0 +1,171 @@
+basePath: /
+definitions:
+  dtos.JSONSwaggerCreatedResponses:
+    properties:
+      code:
+        example: 201
+        type: integer
+      data: {}
+      errors: {}
+      status:
+        example: Success
+        type: string
+    type: object
+  dtos.JSONSwaggerOKResponses:
+    properties:
+      code:
+        example: 200
+        type: integer
+      data: {}
+      errors: {}
+      status:
+        example: Success
+        type: string
+    type: object
+  dtos.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        minLength: 6
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dtos.UserRequest:
+    properties:
+      age:
+        type: integer
+      email:
+        type: string
+      password:
+        minLength: 6
+        type: string
+      username:
+        type: string
+    required:
+    - age
+    - email
+    - password
+    - username
+    type: object
+  dtos.UserUpdateRequest:
+    properties:
+      email:
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - username
+    type: object
+info:
+  contact:
+    email: claraavelitaa@gmail.com
+    name: Clara Velita Pranolo
+  description: This is swagger for final project training golang mnc service with
+    Hacktiv8
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Final Project Training Golang MNC Service Api
+  version: "1.0"
+paths:
+  /users:
+    delete:
+      consumes:
+      - application/json
+      description: This endpoint for delete user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Delete user
+      tags:
+      - Users
+  /users/{userid}:
+    put:
+      consumes:
+      - application/json
+      description: This endpoint for update user
+      parameters:
+      - description: UserID
+        in: path
+        name: userid
+        required: true
+        type: integer
+      - description: payload
+        in: body
+        name: services
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.UserUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Update user
+      tags:
+      - Users
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: This endpoint for login user
+      parameters:
+      - description: payload
+        in: body
+        name: services
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      summary: Login user
+      tags:
+      - Users
+  /users/register:
+    post:
+      consumes:
+      - application/json
+      description: This endpoint for create new user
+      parameters:
+      - description: payload
+        in: body
+        name: services
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.UserRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerCreatedResponses'
+      summary: Register New User
+      tags:
+      - Users
+securityDefinitions:
+  BearerToken:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
