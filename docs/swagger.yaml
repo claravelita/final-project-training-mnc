@@ -24,9 +24,6 @@ definitions:
         type: integer
       data: {}
       errors: {}
-      status:
-        example: Success
-        type: string
     type: object
   dtos.JSONSwaggerOKResponses:
     properties:
@@ -35,9 +32,6 @@ definitions:
         type: integer
       data: {}
       errors: {}
-      status:
-        example: Success
-        type: string
     type: object
   dtos.LoginRequest:
     properties:
@@ -61,6 +55,16 @@ definitions:
     required:
     - photo_url
     - title
+    type: object
+  dtos.SocialMediaRequest:
+    properties:
+      name:
+        type: string
+      social_media_url:
+        type: string
+    required:
+    - name
+    - social_media_url
     type: object
   dtos.UserRequest:
     properties:
@@ -284,6 +288,97 @@ paths:
       summary: Update photo
       tags:
       - Photos
+  /socialmedias:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint for get all social medias
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Get all social medias
+      tags:
+      - Social Medias
+    post:
+      consumes:
+      - application/json
+      description: This endpoint for create social media
+      parameters:
+      - description: payload
+        in: body
+        name: services
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.SocialMediaRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerCreatedResponses'
+      security:
+      - BearerToken: []
+      summary: Create social media
+      tags:
+      - Social Medias
+  /socialmedias/{socialMediaId}:
+    delete:
+      consumes:
+      - application/json
+      description: This endpoint for delete social medias
+      parameters:
+      - description: SocialMediaID
+        in: path
+        name: socialMediaId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Delete social medias
+      tags:
+      - Social Medias
+    put:
+      consumes:
+      - application/json
+      description: This endpoint for update social medias
+      parameters:
+      - description: SocialMediaID
+        in: path
+        name: socialMediaId
+        required: true
+        type: integer
+      - description: payload
+        in: body
+        name: services
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.SocialMediaRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Update social medias
+      tags:
+      - Social Medias
   /users:
     delete:
       consumes:

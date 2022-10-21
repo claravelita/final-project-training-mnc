@@ -14,6 +14,7 @@ import (
 	"github.com/claravelita/final-project-training-mnc/repository"
 	commentUsecase "github.com/claravelita/final-project-training-mnc/usecase/comment"
 	photoUsecase "github.com/claravelita/final-project-training-mnc/usecase/photo"
+	socialMediaUsecase "github.com/claravelita/final-project-training-mnc/usecase/socialmedia"
 	userUsecase "github.com/claravelita/final-project-training-mnc/usecase/user"
 
 	"github.com/labstack/echo/v4"
@@ -57,6 +58,12 @@ func (server *Server) InitializeServer() {
 	commentUsecase := commentUsecase.NewCommentImplementation(commentRepo, photoRepo, userRepo, AuthHelper)
 	commentController := controller.NewCommentController(commentUsecase)
 	commentController.Route(groupComment)
+
+	groupSocialMedia := server.Route.Group("/socialmedias")
+	socialMediaRepo := repository.NewSocialMediaRepository(initDB)
+	socialMediaUsecase := socialMediaUsecase.NewSocialMediaImplementation(socialMediaRepo, commentRepo, photoRepo, userRepo, AuthHelper)
+	socialMediaController := controller.NewSocialMediaController(socialMediaUsecase)
+	socialMediaController.Route(groupSocialMedia)
 
 	serverConfiguration := &http.Server{
 		Addr:         ":" + os.Getenv("PORT"),

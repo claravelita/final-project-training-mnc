@@ -308,6 +308,152 @@
                 }
             }
         },
+        "/socialmedias": {
+            "get": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
+                "description": "This endpoint for get all social medias",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Social Medias"
+                ],
+                "summary": "Get all social medias",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.JSONSwaggerOKResponses"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
+                "description": "This endpoint for create social media",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Social Medias"
+                ],
+                "summary": "Create social media",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "services",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dtos.SocialMediaRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.JSONSwaggerCreatedResponses"
+                        }
+                    }
+                }
+            }
+        },
+        "/socialmedias/{socialMediaId}": {
+            "put": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
+                "description": "This endpoint for update social medias",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Social Medias"
+                ],
+                "summary": "Update social medias",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "SocialMediaID",
+                        "name": "socialMediaId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "payload",
+                        "name": "services",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dtos.SocialMediaRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.JSONSwaggerOKResponses"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
+                "description": "This endpoint for delete social medias",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Social Medias"
+                ],
+                "summary": "Delete social medias",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "SocialMediaID",
+                        "name": "socialMediaId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dtos.JSONSwaggerOKResponses"
+                        }
+                    }
+                }
+            }
+        },
         "/users": {
             "delete": {
                 "security": [
@@ -486,11 +632,7 @@
                     "example": 201
                 },
                 "data": {},
-                "errors": {},
-                "status": {
-                    "type": "string",
-                    "example": "Success"
-                }
+                "errors": {}
             }
         },
         "dtos.JSONSwaggerOKResponses": {
@@ -501,11 +643,7 @@
                     "example": 200
                 },
                 "data": {},
-                "errors": {},
-                "status": {
-                    "type": "string",
-                    "example": "Success"
-                }
+                "errors": {}
             }
         },
         "dtos.LoginRequest": {
@@ -538,6 +676,21 @@
                     "type": "string"
                 },
                 "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "dtos.SocialMediaRequest": {
+            "type": "object",
+            "required": [
+                "name",
+                "social_media_url"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "social_media_url": {
                     "type": "string"
                 }
             }

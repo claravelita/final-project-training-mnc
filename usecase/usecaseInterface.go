@@ -26,4 +26,11 @@ type (
 		IDCommentValidation(userID, commentID int) dtos.JSONResponses
 		DeleteComment(userID, commentID int) (dtos.JSONResponses, error)
 	}
+
+	SocialMediaUsecase interface {
+		CreateSocialMedia(userID int, request dtos.SocialMediaRequest) (dtos.JSONResponses, error)
+		GetAllSocialMedia(userID int) (dtos.JSONResponses, error)
+		UpdateSocialMedia(userID, socialMediaID int, request dtos.SocialMediaRequest) (dtos.JSONResponses, error)
+		DeleteSocialMedia(userID, socialMediaID int) (dtos.JSONResponses, error)
+	}
 )

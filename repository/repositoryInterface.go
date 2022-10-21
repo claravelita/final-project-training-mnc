@@ -18,7 +18,7 @@ type (
 	PhotoRepository interface {
 		Create(photo domain.Photo) (domain.Photo, error)
 		GetAll(userID int) ([]domain.Photo, error)
-		GetPhotoByID(userID int) (*domain.Photo, error)
+		GetPhotoByID(photoID int) (*domain.Photo, error)
 		Update(id int, request dtos.PhotoRequest) (domain.Photo, error)
 		Delete(id int) error
 	}
@@ -28,6 +28,14 @@ type (
 		GetAll(userID int) ([]domain.Comment, error)
 		GetCommentByID(commentID int) (*domain.Comment, error)
 		Update(id int, request dtos.CommentUpdateRequest) (domain.Comment, error)
+		Delete(id int) error
+	}
+
+	SocialMediaRepository interface {
+		Create(socialMedia domain.SocialMedia) (domain.SocialMedia, error)
+		GetAll(userID int) ([]domain.SocialMedia, error)
+		GetByID(socialMediaID int) (*domain.SocialMedia, error)
+		Update(id int, request dtos.SocialMediaRequest) (domain.SocialMedia, error)
 		Delete(id int) error
 	}
 )
