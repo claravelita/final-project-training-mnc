@@ -22,4 +22,7 @@ type (
 		Update(id int, request dtos.PhotoRequest) (domain.Photo, error)
 		Delete(id int) error
 	}
+
+	CommentRepository interface {
+	}
 )
