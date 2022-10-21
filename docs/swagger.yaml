@@ -1,5 +1,22 @@
 basePath: /
 definitions:
+  dtos.CommentRequest:
+    properties:
+      message:
+        type: string
+      photo_id:
+        type: integer
+    required:
+    - message
+    - photo_id
+    type: object
+  dtos.CommentUpdateRequest:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
   dtos.JSONSwaggerCreatedResponses:
     properties:
       code:
@@ -85,6 +102,97 @@ info:
   title: Final Project Training Golang MNC Service Api
   version: "1.0"
 paths:
+  /comments:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint for get all comment
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Get all comment
+      tags:
+      - Comments
+    post:
+      consumes:
+      - application/json
+      description: This endpoint for create photo
+      parameters:
+      - description: payload
+        in: body
+        name: services
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.CommentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerCreatedResponses'
+      security:
+      - BearerToken: []
+      summary: Create photo
+      tags:
+      - Comments
+  /comments/{commentId}:
+    delete:
+      consumes:
+      - application/json
+      description: This endpoint for delete comment
+      parameters:
+      - description: CommentID
+        in: path
+        name: commentId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Delete comment
+      tags:
+      - Comments
+    put:
+      consumes:
+      - application/json
+      description: This endpoint for update comment
+      parameters:
+      - description: CommentID
+        in: path
+        name: commentId
+        required: true
+        type: integer
+      - description: payload
+        in: body
+        name: services
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.CommentUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Update comment
+      tags:
+      - Comments
   /photos:
     get:
       consumes:
@@ -96,7 +204,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/dtos.JSONSwaggerCreatedResponses'
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
       security:
       - BearerToken: []
       summary: Get all photo

@@ -12,6 +12,7 @@ import (
 	_ "github.com/claravelita/final-project-training-mnc/docs"
 	"github.com/claravelita/final-project-training-mnc/infrastructure"
 	"github.com/claravelita/final-project-training-mnc/repository"
+	commentUsecase "github.com/claravelita/final-project-training-mnc/usecase/comment"
 	photoUsecase "github.com/claravelita/final-project-training-mnc/usecase/photo"
 	userUsecase "github.com/claravelita/final-project-training-mnc/usecase/user"
 
@@ -50,6 +51,12 @@ func (server *Server) InitializeServer() {
 	photoUsecase := photoUsecase.NewPhotoImplementation(photoRepo, userRepo, AuthHelper)
 	photoController := controller.NewPhotoController(photoUsecase)
 	photoController.Route(groupPhoto)
+
+	groupComment := server.Route.Group("/comments")
+	commentRepo := repository.NewCommentRepository(initDB)
+	commentUsecase := commentUsecase.NewCommentImplementation(commentRepo, photoRepo, userRepo, AuthHelper)
+	commentController := controller.NewCommentController(commentUsecase)
+	commentController.Route(groupComment)
 
 	serverConfiguration := &http.Server{
 		Addr:         ":" + os.Getenv("PORT"),

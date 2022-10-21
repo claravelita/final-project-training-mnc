@@ -111,7 +111,7 @@ func (u userImplementation) UpdateUser(userID int, request dtos.UserUpdateReques
 		Email:    newUser.Email,
 		Age:      newUser.Age,
 		ID:       newUser.ID,
-		UpdateAt: newUser.AuditTable.UpdatedAt,
+		UpdateAt: &newUser.AuditTable.UpdatedAt,
 	}
 
 	return command.SuccessCreatedResponses(data), nil

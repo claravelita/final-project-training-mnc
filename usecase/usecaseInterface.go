@@ -1,6 +1,8 @@
 package usecase
 
-import "github.com/claravelita/final-project-training-mnc/dtos"
+import (
+	"github.com/claravelita/final-project-training-mnc/dtos"
+)
 
 type (
 	UserUsecase interface {
@@ -18,5 +20,10 @@ type (
 	}
 
 	CommentUsecase interface {
+		CreateComment(userID int, request dtos.CommentRequest) (dtos.JSONResponses, error)
+		GetAllComment(userID int) (dtos.JSONResponses, error)
+		UpdateComment(userID, commentID int, request dtos.CommentUpdateRequest) (dtos.JSONResponses, error)
+		IDCommentValidation(userID, commentID int) dtos.JSONResponses
+		DeleteComment(userID, commentID int) (dtos.JSONResponses, error)
 	}
 )

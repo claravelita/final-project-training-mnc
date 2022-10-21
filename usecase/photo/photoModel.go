@@ -45,7 +45,7 @@ func (p photoImplementation) GetAllPhoto(userID int) (dtos.JSONResponses, error)
 			PhotoURL:  p.PhotoURL,
 			UserID:    p.UserID,
 			CreatedAt: &p.AuditTable.CreatedAt,
-			Users: &dtos.UserForeignResponse{
+			Users: &dtos.UserResponse{
 				Email:    p.Users.Email,
 				Username: p.Users.Username,
 			},
@@ -124,7 +124,7 @@ func (u photoImplementation) DeletePhoto(userID, photoID int) (dtos.JSONResponse
 	}
 
 	message := dtos.MessageResponses{
-		Message: "Your account has been successfully deleted",
+		Message: "Your photo has been successfully deleted",
 	}
 
 	return command.SuccessCreatedResponses(message), nil

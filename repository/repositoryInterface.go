@@ -24,5 +24,10 @@ type (
 	}
 
 	CommentRepository interface {
+		Create(comment domain.Comment) (domain.Comment, error)
+		GetAll(userID int) ([]domain.Comment, error)
+		GetCommentByID(commentID int) (*domain.Comment, error)
+		Update(id int, request dtos.CommentUpdateRequest) (domain.Comment, error)
+		Delete(id int) error
 	}
 )

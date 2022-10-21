@@ -21,15 +21,10 @@ type (
 	}
 
 	UserResponse struct {
-		ID       int       `json:"id"`
-		Username string    `json:"username"`
-		Email    string    `json:"email"`
-		Age      int       `json:"age"`
-		UpdateAt time.Time `json:"update_at,omitempty"`
-	}
-
-	UserForeignResponse struct {
-		Username string `json:"username"`
-		Email    string `json:"email"`
+		ID       int        `json:"id,omitempty"`
+		Username string     `json:"username"`
+		Email    string     `json:"email"`
+		Age      int        `json:"age,omitempty"`
+		UpdateAt *time.Time `json:"update_at,omitempty"`
 	}
 )
