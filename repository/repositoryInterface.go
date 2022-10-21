@@ -14,4 +14,12 @@ type (
 		Update(id int, request dtos.UserUpdateRequest) (domain.User, error)
 		Delete(id int) error
 	}
+
+	PhotoRepository interface {
+		Create(photo domain.Photo) (domain.Photo, error)
+		GetAll(userID int) ([]domain.Photo, error)
+		GetPhotoByID(userID int) (*domain.Photo, error)
+		Update(id int, request dtos.PhotoRequest) (domain.Photo, error)
+		Delete(id int) error
+	}
 )

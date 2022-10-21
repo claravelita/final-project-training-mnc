@@ -9,4 +9,14 @@ type (
 		UpdateUser(userID int, request dtos.UserUpdateRequest) (dtos.JSONResponses, error)
 		DeleteUser(userID int) (dtos.JSONResponses, error)
 	}
+
+	PhotoUsecase interface {
+		CreatePhoto(userID int, request dtos.PhotoRequest) (dtos.JSONResponses, error)
+		GetAllPhoto(userID int) (dtos.JSONResponses, error)
+		UpdatePhoto(userID, photoID int, request dtos.PhotoRequest) (dtos.JSONResponses, error)
+		DeletePhoto(userID, photoID int) (dtos.JSONResponses, error)
+	}
+
+	CommentUsecase interface {
+	}
 )

@@ -27,4 +27,9 @@ type (
 		Age      int       `json:"age"`
 		UpdateAt time.Time `json:"update_at,omitempty"`
 	}
+
+	UserForeignResponse struct {
+		Username string `json:"username"`
+		Email    string `json:"email"`
+	}
 )

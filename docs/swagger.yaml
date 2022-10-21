@@ -33,6 +33,18 @@ definitions:
     - email
     - password
     type: object
+  dtos.PhotoRequest:
+    properties:
+      caption:
+        type: string
+      photo_url:
+        type: string
+      title:
+        type: string
+    required:
+    - photo_url
+    - title
+    type: object
   dtos.UserRequest:
     properties:
       age:
@@ -73,6 +85,97 @@ info:
   title: Final Project Training Golang MNC Service Api
   version: "1.0"
 paths:
+  /photos:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint for get all photo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerCreatedResponses'
+      security:
+      - BearerToken: []
+      summary: Get all photo
+      tags:
+      - Photos
+    post:
+      consumes:
+      - application/json
+      description: This endpoint for create photo
+      parameters:
+      - description: payload
+        in: body
+        name: services
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.PhotoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerCreatedResponses'
+      security:
+      - BearerToken: []
+      summary: Create photo
+      tags:
+      - Photos
+  /photos/{photoId}:
+    delete:
+      consumes:
+      - application/json
+      description: This endpoint for delete photo
+      parameters:
+      - description: PhotoID
+        in: path
+        name: photoId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Delete photo
+      tags:
+      - Photos
+    put:
+      consumes:
+      - application/json
+      description: This endpoint for update photo
+      parameters:
+      - description: PhotoID
+        in: path
+        name: photoId
+        required: true
+        type: integer
+      - description: payload
+        in: body
+        name: services
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.PhotoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dtos.JSONSwaggerOKResponses'
+      security:
+      - BearerToken: []
+      summary: Update photo
+      tags:
+      - Photos
   /users:
     delete:
       consumes:
